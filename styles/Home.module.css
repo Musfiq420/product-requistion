@@ -276,3 +276,26 @@
     transform: rotate(0deg);
   }
 }
+
+.table {
+  border: 1 px solid black;
+  border-collapse: collapse;
+}
+
+.table th {
+  border: 1 px solid black;
+  border-collapse: collapse;
+}
+
+.table td {
+  border: 1 px solid black;
+  border-collapse: collapse;
+}
+
+.in {
+  border:none;
+}
+
+.in:focus{
+  border-width: 1px;
+}
