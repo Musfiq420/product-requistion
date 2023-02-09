@@ -69,7 +69,7 @@ export default function Home() {
       </div>:
         <div>
           {screen==='selected'?
-          <div>
+          <div style={{height:'80vh',overflowY:'scroll', marginTop:'50px'}}>
             <SelectedProduct selected={selected} onDelete={onDelete} />
             <FloatingButton setScreen={setScreen} />
             <PrintButton setScreen={setScreen} />
