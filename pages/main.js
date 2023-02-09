@@ -17,8 +17,9 @@ const Main = () => {
     const [category, setCategory] = useState('food');
     const [selected, setSelected] = useState([]);
     const [screen, setScreen] = useState('selected');
+    const [posY, setPosY] = useState(0)
     
-    
+
     const onDelete = (name, size) => {
       const tempSelected = selected;
       selected.map((e, i) => {
@@ -51,7 +52,7 @@ const Main = () => {
             <div style={{width:'70%', overflowY:'scroll'}}>
               <SideNav category={category} setCategory={setCategory} /> 
               <div style={{marginLeft:'150px'}}>
-                <AllProducts category={category} selected={selected} setSelected={setSelected} setScreen={setScreen} />
+                <AllProducts posY={posY} setPosY={setPosY} category={category} selected={selected} setSelected={setSelected} setScreen={setScreen} />
               </div>
             </div>
   
@@ -71,8 +72,8 @@ const Main = () => {
             </div>
             :screen==='all'?
             <div>
-              <AllProducts category={category} selected={selected} setSelected={setSelected} setScreen={setScreen} />
-              <CloseButton setScreen={setScreen} />
+              <AllProducts posY={posY} setPosY={setPosY} category={category} selected={selected} setSelected={setSelected} setScreen={setScreen} />
+              <CloseButton setPosY={setPosY} setScreen={setScreen} />
               <BottomNav category={category} setCategory={setCategory} />
             </div>
             :

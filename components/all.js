@@ -4,8 +4,14 @@ import productList from '../lib/productList.json'
 
 
 
-const AllProducts = ({category, selected, setSelected, setScreen}) => {
+const AllProducts = ({category, selected, setSelected, setScreen, posY, setPosY}) => {
     const [productInfo, setProductInfo] = useState([]);
+
+    useEffect(() => {
+      console.log("called")
+      setTimeout(() => window.scroll(0, posY), 0)
+      
+    }, [])
 
     useEffect(() => {
       setProductInfo(productList.filter((e) => {
@@ -39,6 +45,7 @@ const AllProducts = ({category, selected, setSelected, setScreen}) => {
       })
       console.log(tempProduct);
       setSelected([...tempProduct]);
+      setPosY(window.scrollY);
       setScreen('selected')
     }
  
