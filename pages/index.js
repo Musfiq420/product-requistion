@@ -12,10 +12,14 @@ import PrintButton from '@/layout/printButton'
 import Print from '@/components/print'
 import TotalSum from '@/layout/totalSum'
 import SideNav from '@/layout/sideNav'
+import useDeviceSize from '@/hooks/useWindowDimensions'
 
 const inter = Inter({ subsets: ['latin'] })
 
+
+
 export default function Home() {
+  const [width, height] = useDeviceSize();
   const [category, setCategory] = useState('food');
   const [selected, setSelected] = useState([]);
   const [screen, setScreen] = useState('selected');
@@ -40,28 +44,50 @@ export default function Home() {
     })
   }
 
-  return (
-    <>
-      {screen==='print'?
-      <>
-      <Print selected={selected} />
-      <CloseButton setScreen={setScreen} />
-      </>
-      :
-      <div style={{display:'flex', height:'100vh', justifyContent:'space-between'}}>
-      <div style={{width:'70%', overflowY:'scroll'}}>
-        <SideNav category={category} setCategory={setCategory} /> 
-        <div style={{marginLeft:'150px'}}>
-          <AllProducts category={category} selected={selected} setSelected={setSelected} setScreen={setScreen} />
-        </div>
-      </div>
+  return (<div>
+      {width>900?<div>
+        {screen==='print'?
+          <div>
+            <Print selected={selected} />
+            <CloseButton setScreen={setScreen} />
+          </div>
+        :
+          <div style={{display:'flex', height:'100vh', justifyContent:'space-between'}}>
+          <div style={{width:'70%', overflowY:'scroll'}}>
+            <SideNav category={category} setCategory={setCategory} /> 
+            <div style={{marginLeft:'150px'}}>
+              <AllProducts category={category} selected={selected} setSelected={setSelected} setScreen={setScreen} />
+            </div>
+          </div>
 
-      <div style={{width:'30%', height:'90vh', overflowY:'scroll'}}>
-        <SelectedProduct selected={selected} onDelete={onDelete} />
-        <PrintButton setScreen={setScreen} />
-      </div>
-    </div>
-    }
+          <div style={{width:'30%', height:'80vh', overflowY:'scroll', marginTop:'50px'}}>
+            <SelectedProduct selected={selected} onDelete={onDelete} />
+            <PrintButton setScreen={setScreen} />
+          </div>
+        </div>
+        }
+      </div>:
+        <div>
+          {screen==='selected'?
+          <div>
+            <SelectedProduct selected={selected} onDelete={onDelete} />
+            <FloatingButton setScreen={setScreen} />
+            <PrintButton setScreen={setScreen} />
+          </div>
+          :screen==='all'?
+          <div>
+            <AllProducts category={category} selected={selected} setSelected={setSelected} setScreen={setScreen} />
+            <CloseButton setScreen={setScreen} />
+            <BottomNav category={category} setCategory={setCategory} />
+          </div>
+          :
+          <div>
+            <Print selected={selected} />
+            <CloseButton setScreen={setScreen} />
+          </div>
+        }
+        </div>}
+      </div>)
       
       {/* {screen==='all'||screen==='print'?<CloseButton setScreen={setScreen} />:null}
       {screen==='selected'?<PrintButton setScreen={setScreen} />:null}
@@ -71,6 +97,6 @@ export default function Home() {
       {screen==='selected'?<FloatingButton setScreen={setScreen} />:null} */}
       
       {/* {screen==='selected'?<TotalSum selected={selected} />:null} */}
-    </>
-  )
+    
+  
 }

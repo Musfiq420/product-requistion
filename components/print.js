@@ -76,9 +76,6 @@ const ComponentToPrintBangla = React.forwardRef((props, ref) => {
 })
 
 const ComponentToPrintEnglish = React.forwardRef((props, ref) => {
-
-    
-
     return (
       <div ref={ref}>
           <div style={{display:'flex',  justifyContent:'space-between', margin:'20px'}} >
