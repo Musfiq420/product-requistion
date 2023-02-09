@@ -11,6 +11,8 @@ import PrintButton from '@/layout/printButton'
 import Print from '@/components/print'
 import SideNav from '@/layout/sideNav'
 import { useRouter } from 'next/router';
+import Back from '@/layout/backButton';
+import BackButton from '@/layout/backButton';
 
 const Main = () => {
     const [width, height] = useDeviceSize();
@@ -66,9 +68,11 @@ const Main = () => {
           <div>
             {screen==='selected'?
             <div style={{height:'80vh',overflowY:'scroll', marginTop:'50px'}}>
+              <BackButton />
               <SelectedProduct selected={selected} onDelete={onDelete} />
               <FloatingButton setScreen={setScreen} />
               <PrintButton setScreen={setScreen} />
+              <BackButton />
             </div>
             :screen==='all'?
             <div>

@@ -1,12 +1,13 @@
+import { useRouter } from 'next/router'
 import React from 'react'
 
 const SideNav = ({category, setCategory}) => {
     
-
+  const router = useRouter();
   return (
-    <div style={{display:'flex', flexDirection:'column', position:'fixed', height:'100%', left:0, width:'150px', border:'1px solid black'}}>
-            <div style={{height:'50px', textAlign:'center', padding:'10px'}}>
-              <h3>Categories</h3>
+    <div style={{ display:'flex', flexDirection:'column', position:'fixed', height:'100%', left:0, width:'200px', border:'1px solid black'}}>
+            <div style={{display:'flex', height:'50px', textAlign:'center', padding:'10px', alignItems:'center'}}>
+              <button onClick={() => router.back()} style={{margin:'10px', padding:'5px'}}>Back</button> <h3>Categories</h3>
             </div>
             <button style={{height:'50px', borderColor:'#DCDCDC', backgroundColor:category==='food'?null:"white"}} onClick={() => setCategory('food')}>Food</button>
         
