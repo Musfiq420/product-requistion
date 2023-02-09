@@ -43,11 +43,10 @@ const AllProducts = ({category, selected, setSelected, setScreen}) => {
     }
  
   return (
-    <div style={{marginBottom:'50px', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-        <div style={{marginTop:'20px'}}>
-          <h2>{category}</h2>
-        </div>
-        {productInfo.map((e) => (<Product 
+    <>
+      <div style={{margin:'10px', marginBottom:'50px', display:'flex', flexWrap:'wrap', justifyContent:'center', alignItems:'center'}}>
+        
+        {productInfo.map((e, i) => (<Product 
             name={e.name}
             size={e.size}
             add={true}
@@ -58,7 +57,9 @@ const AllProducts = ({category, selected, setSelected, setScreen}) => {
         />))
             }
         
-    </div>
+      </div>
+    </>
+    
   )
 }
 
