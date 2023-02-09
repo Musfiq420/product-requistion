@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <div>
       <div style={{display:'flex', justifyContent:'center'}}>
-        <Image src={logo} width={300} height={300} />
+        <Image src={logo} width={250} height={250} />
       </div>
       <h2 style={{textAlign:'center'}}>Smart Product Requision</h2>
       <h4 style={{textAlign:'center', opacity:'30%'}}>Square Fashions Ltd</h4>
@@ -67,6 +67,13 @@ export default function Home() {
           console.log(profileInfo)
           }}>Start Shopping</button>
       </div>
+      
+      <div style={{display:'flex', justifyContent:'center'}}>
+        <a style={{fontStyle:'italic'}} href="https://www.flaticon.com/free-icons/online-shop" title="online shop icons">Online shop icons created by Royyan Wijaya - Flaticon</a>  
+      </div>
+      <p style={{display:'flex', justifyContent:'center', opacity:'30%'}}>
+        Icon credit
+      </p>
     </div>
     
   )
