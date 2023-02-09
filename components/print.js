@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useEffect, useRef, useState } from 'react';
 import ReactToPrint from 'react-to-print';
 import styles from '../styles/Home.module.css'
@@ -5,6 +6,20 @@ import styles from '../styles/Home.module.css'
 const ComponentToPrintBangla = React.forwardRef((props, ref) => {
 
   const character = ["১" ,"২" ,"৩", "৪", "৫", "৬", "৭", "৮", "৯", "১০", "১১", "১২", "১৩", "১৪", "১৫", "১৬" ,"১৭", "১৮","১৯", "২০", "২১", "২২", "২৩", "২৪", "২৫", "২৬", "২৭" ,"২৮" ,"২৯", "৩০", "৩১", "৩২"]
+  const router = useRouter();
+  const [profileInfo, setProfileInfo] = useState({
+    name:"",
+    id:"",
+    designation:"",
+    department:"",
+    unit:"",
+    date: new Date().toLocaleDateString('en-CA')
+  }) 
+
+  useEffect(() => {
+    setProfileInfo(router.query);
+    console.log(router.query.date)
+  }, [router.query]);
 
   
 
@@ -15,7 +30,7 @@ const ComponentToPrintBangla = React.forwardRef((props, ref) => {
             <p style={{fontSize:12}}>স্কয়ার ফ্যাশনস লিমিটেড</p>
             <p style={{fontSize:12}}>ভালুকা, ময়মনসিংহ। </p>
           </div>
-          <p style={{fontSize:12}}>তারিখ- {(new Date()).toLocaleDateString("bn-BD")}</p>
+          <p style={{fontSize:12}}>তারিখ- {(new Date(profileInfo.date)).toLocaleDateString("bn-BD")}</p>
         </div>
         
         <h5 style={{textAlign:'center', textDecoration:'underline'}}>পণ্যের চাহিদা পত্র</h5>
@@ -23,23 +38,23 @@ const ComponentToPrintBangla = React.forwardRef((props, ref) => {
         <table style={{width:'80%', border:'1px solid black', borderCollapse:'collapse', margin:'auto', marginTop:'10px'}} >
           <tr>
             <td width='20%' style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} >নাম</td>
-            <td width='80%' style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} ><input placeholder='type... name' className={styles.in} /></td>
+            <td width='80%' style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} >{profileInfo.name}</td>
           </tr>
           <tr>
             <td  style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} >আইডি</td>
-            <td  style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} ><input placeholder='type... ID' className={styles.in} /></td>
+            <td  style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} >{profileInfo.id}</td>
           </tr>
           <tr>
             <td  style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} >পদবী</td>
-            <td  style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} ><input placeholder='type... designation' className={styles.in} /></td>
+            <td  style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} >{profileInfo.designation}</td>
           </tr>
           <tr>
             <td  style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} >বিভাগ</td>
-            <td  style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} ><input placeholder='type... department' className={styles.in} /></td>
+            <td  style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} >{profileInfo.department}</td>
           </tr>
           <tr>
             <td  style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} >ইউনিট</td>
-            <td  style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} ><input placeholder='type... unit' className={styles.in} /></td>
+            <td  style={{border:'1px solid black', borderCollapse:'collapse', padding:2, fontSize:12}} >{profileInfo.unit}</td>
           </tr>
         </table>
         <table style={{width:'80%', border:'1px solid black', borderCollapse:'collapse', margin:'auto', marginTop:'10px'}} >
